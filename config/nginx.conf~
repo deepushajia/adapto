@@ -1,14 +1,14 @@
 upstream puma {
-  server unix:///home/edge/apps/edge_testing/shared/tmp/sockets/edge_testing-puma.sock;
+  server unix:///home/deepu/apps/adapto/shared/tmp/sockets/adapto-puma.sock;
 }
 
 server {
-  listen 80 default_server deferred;
+  listen 90;
   # server_name example.com;
 
-  root /home/edge/apps/edge_testing/current/public;
-  access_log /home/edge/apps/edge_testing/current/log/nginx.access.log;
-  error_log /home/edge/apps/edge_testing/current/log/nginx.error.log info;
+  root /home/deepu/apps/adapto/current/public;
+  access_log /home/deepu/apps/adapto/current/log/nginx.access.log;
+  error_log /home/deepu/apps/adapto/current/log/nginx.error.log info;
 
   location ^~ /assets/ {
     gzip_static on;

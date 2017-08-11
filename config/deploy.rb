@@ -3,7 +3,7 @@ server '139.59.77.222', port: 22, roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:deepushajia/adapto.git'
 set :application,     'adapto'
-set :user,            'deepu'
+set :user,            'deep'
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
 
