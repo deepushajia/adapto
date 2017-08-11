@@ -49,6 +49,6 @@ development:
 #
 production:
   <<: *default
-  database: deccapp_production
-  username: deccapp
-  password: <%= ENV['DECCAPP_DATABASE_PASSWORD'] %>
+  database: deccathlon
+  username: root
+  password: "shahelement4"
