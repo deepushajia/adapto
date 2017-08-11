@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  topic_id: 
+  active: false
+  question: MyText
+  difficulty: 
+  no_taken: 
+  no_correct: 
+  no_wrong: 
+  average_time: 
+  solution: MyText
+
+two:
+  topic_id: 
+  active: false
+  question: MyText
+  difficulty: 
+  no_taken: 
+  no_correct: 
+  no_wrong: 
+  average_time: 
+  solution: MyText

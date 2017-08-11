@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  question_id: 
+  option_id: 
+  score: 
+  time_taken: 
+  generated_test_id: 
+
+two:
+  user_id: 
+  question_id: 
+  option_id: 
+  score: 
+  time_taken: 
+  generated_test_id: 

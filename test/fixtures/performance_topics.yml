@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  topic_id: 1
+  test_no: 1
+  proficiency: 1.5
+  accuracy: 1.5
+
+two:
+  user_id: 1
+  topic_id: 1
+  test_no: 1
+  proficiency: 1.5
+  accuracy: 1.5
