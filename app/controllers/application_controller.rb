@@ -20,9 +20,10 @@ class ApplicationController < ActionController::Base
 
   def cors_preflight_check
     if request.method == 'OPTIONS'
-      headers['Access-Control-Allow-Origin'] = 'http://example.com'
+      headers['Access-Control-Allow-Credentials'] = true
+      headers['Access-Control-Allow-Origin'] = 'http://139.59.77.222'
       headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, DELETE, OPTIONS'
-      headers['Access-Control-Allow-Headers'] = 'X-Requested-With, X-Prototype-Version, Token'
+      headers['Access-Control-Allow-Headers'] = 'Content-Type, X-Experience-API-Version,Authorization,X-Requested-With, X-Prototype-Version, Token'
       headers['Access-Control-Max-Age'] = '1728000'
       render :text => '', :content_type => 'text/plain'
     end
