@@ -5,7 +5,7 @@ class InterfaceController < ApplicationController
     course = Course.find_by(params[:course_id])
     @topics = course.topics.pluck(:name)
     @difficulty = [1,2,3,4,5]
-    @success= Question.last.id
+    @success= Question.last.id rescue 1
     render "index.html.erb"
   end
 
