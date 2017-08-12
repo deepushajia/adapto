@@ -5,4 +5,5 @@ else
   json.status_code 200
   json.proficiency @proficiency
   json.accuracy @accuracy
+  json.day_no @day_no
 end

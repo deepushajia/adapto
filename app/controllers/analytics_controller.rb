@@ -22,5 +22,6 @@ class AnalyticsController < ApplicationController
     performance_topic = PerformanceTopic.where(user_id: @user.id,topic_id: topic_id, test_no: performance_test.test_no).pluck(:accuracy) rescue nil
     @proficiency = performance_test.proficiency rescue 0
     @accuracy = (performance_topic.sum.to_f/performance_topic.count) rescue 0
+    @day_no = User.day_calculation(@user.id) rescue 1
   end
 end
