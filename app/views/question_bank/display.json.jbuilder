@@ -4,6 +4,7 @@ if @user.blank?
 else
   json.status_code 200
   if @question_data.blank?
+    json.topic_name @topic.name
     json.message 'No Questions'
   else
     json.message 'Success'
