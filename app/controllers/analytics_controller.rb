@@ -4,12 +4,12 @@ class AnalyticsController < ApplicationController
     course = Course.find_by(id:params[:course_id])
     performance_test = PerformanceTest.where(user_id: @user.id).order(:test_no)
     days = performance_test.pluck(:test_no)
-    @day_no = [0]
     @day_no = days.collect{|i| i.to_s}
-    @total_accuracy = [0]
+    @day_no = [0] if @day_no.blank?
     @total_accuracy = performance_test.pluck(:accuracy)
-    @total_proficiency = [0]
+    @total_accuracy = [0] if @total_accuracy.blank?
     @total_proficiency = performance_test.pluck(:proficiency)
+    @total_proficiency = [0] if @total_proficiency.blank?
     @topic_accuracy = {}
     @topic_proficiency = {}
     course.topics.each do |topic|
