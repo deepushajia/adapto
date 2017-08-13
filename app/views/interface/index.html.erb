@@ -143,40 +143,49 @@ MathJax.Hub.Config({
     document.getElementById('topic').value = "";
   }
 
+  function delay_focus(){
+    setTimeout(
+        function()
+        {
+          document.getElementById('MathInput').focus();
+        }, 10);
+  }
+
   function update() {
   if ( $.trim( $('#question').val() ) == '' ){
     document.getElementById('question').value = document.getElementById('MathInput').value;
     document.getElementById('MathInput').value = "";
-    document.getElementById('MathInput').focus();
+    this.delay_focus();
+
     }
   else if ( $.trim( $('#solution').val() ) == '' ){
     document.getElementById('solution').value = document.getElementById('MathInput').value;
     document.getElementById('MathInput').value = "";
-    document.getElementById('MathInput').focus();
+    this.delay_focus();
     }
   else if ( $.trim( $('#right').val() ) == '' ){
     document.getElementById('right').value = document.getElementById('MathInput').value;
     document.getElementById('MathInput').value = "";
-    document.getElementById('MathInput').focus();
+    this.delay_focus();
   }
   else if ( $.trim( $('#wrong1').val() ) == '' ){
     document.getElementById('wrong1').value = document.getElementById('MathInput').value;
     document.getElementById('MathInput').value = "";
-    document.getElementById('MathInput').focus();
+    this.delay_focus();
   }
   else if ( $.trim( $('#wrong2').val() ) == '' ){
     document.getElementById('wrong2').value = document.getElementById('MathInput').value;
     document.getElementById('MathInput').value = "";
-    document.getElementById('MathInput').focus();
+    this.delay_focus();
   }
   else if ( $.trim( $('#wrong3').val() ) == '' ){
     document.getElementById('wrong3').value = document.getElementById('MathInput').value;
     document.getElementById('MathInput').value = "";
-    document.getElementById('MathInput').focus();
+    this.delay_focus();
   }
   else {
     document.getElementById('MathInput').value = "";
-    document.getElementById('MathInput').focus();
+    this.delay_focus();
   }
   }
 
