@@ -11,6 +11,8 @@
 
   <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_HTMLorMML">
   </script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+  </script>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
@@ -184,18 +186,31 @@ MathJax.Hub.Config({
       var woption3 = document.getElementById('wrong3').value
       var topic = document.getElementById('topic').value
       var difficulty = document.getElementById('difficulty').value
-      if (topic != "" && difficulty != "" && woption3 != "" && woption2 != "" && woption1 != "" && coption != "" && question != "" && solution != "" ) {
-        var params = "question=" + question + "&solution=" + solution + "&coption=" + coption + "&woption1=" + woption1 + "&woption2=" + woption2 + "&woption3=" + woption3 + "&topic=" + topic + "&difficulty=" + difficulty;
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", url, true);
-        //Send the proper header information along with the request
-        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        this.clear();
-        xhr.send(params);
+            obj = JSON.stringify({
+              question: question,
+              solution: solution,
+              coption: coption,
+              woption1: woption1,
+              woption2: woption2,
+              woption3: woption3,
+              topic: topic,
+              difficulty: difficulty
+      })
+      $.ajax({
+        type: "POST",
+        url: url,
+        data: obj,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (msg) {
+          alert("Success");
+        },
+        error: function (errormessage) {
 
-      } else {
-        alert("Something is missing");
-      }
+          //do something else
+
+        }
+      });
 
     }
   </script>
