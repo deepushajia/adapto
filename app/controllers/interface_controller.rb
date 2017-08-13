@@ -25,7 +25,7 @@ class InterfaceController < ApplicationController
         @success = q.id
       end
       x = 0
-      [params[:coption],params[:woption1],params[:woption2],params[:woption2]].each do |option|
+      [params[:coption],params[:woption1],params[:woption2],params[:woption3]].each do |option|
         o = Option.new
         o.question_id = q.id
         o.correct = true if x == 0
