@@ -31,6 +31,7 @@ class InterfaceController < ApplicationController
         o.correct = true if x == 0
         o.option = option
         o.no_selected = 0
+        o.save!
         x= x+1
       end
     end
