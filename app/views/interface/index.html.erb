@@ -204,7 +204,6 @@ MathJax.Hub.Config({
         dataType: "json",
         success: function (msg) {
           alert("Success");
-          this.clear();
         },
         error: function (errormessage) {
 
@@ -212,6 +211,7 @@ MathJax.Hub.Config({
 
         }
       });
+      this.clear();
 
     }
   </script>
