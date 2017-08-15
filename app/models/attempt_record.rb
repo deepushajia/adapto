@@ -44,7 +44,9 @@ class AttemptRecord < ApplicationRecord
     per_test.no_correct = no_correct
     per_test.no_wrong = no_wrong
     per_test.no_unattempted = no_unattempted
-    per_test.accuracy = (no_correct.to_f / (no_correct + no_wrong))*100
+    total_attempted = 1
+    total_attempted = no_correct + no_wrong
+    per_test.accuracy = (no_correct.to_f / total_attempted)*100
     per_test.save!
     average_time = total_time_taken.to_f/(no_wrong + no_correct + no_unattempted)
     return per_test, average_time, total_time_taken
