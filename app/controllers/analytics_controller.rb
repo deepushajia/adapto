@@ -14,8 +14,10 @@ class AnalyticsController < ApplicationController
     @topic_proficiency = {}
     course.topics.each do |topic|
       performance_topic = PerformanceTopic.where(user_id: @user.id,topic_id: topic.id).order(:test_no)
-      @topic_accuracy["#{topic.name}"] = performance_topic.pluck(:accuracy)
-      @topic_proficiency["#{topic.name}"] = performance_topic.pluck(:proficiency)
+      array = performance_topic.pluck(:accuracy)
+      @topic_accuracy["#{topic.name}"] = array.map{|x| x.round(0)}
+      array = performance_topic.pluck(:proficiency)
+      @topic_proficiency["#{topic.name}"] = array.map{|x| x.round(0)}
     end
   end
 
@@ -23,8 +25,8 @@ class AnalyticsController < ApplicationController
     performance_test = PerformanceTest.where(user_id: @user.id).order(:test_no).last
     topic_id = Course.find_by(id:params[:course_id]).topics.pluck(:id)
     performance_topic = PerformanceTopic.where(user_id: @user.id,topic_id: topic_id, test_no: performance_test.test_no).pluck(:accuracy) rescue nil
-    @proficiency = performance_test.proficiency rescue 0
-    @accuracy = (performance_topic.sum.to_f/performance_topic.count) rescue 0
+    @proficiency = performance_test.proficiency.round(0) rescue 0
+    @accuracy = (performance_topic.sum.to_f/performance_topic.count).round(0) rescue 0
     @day_no = User.day_calculation(@user.id) rescue 1
   end
 end
