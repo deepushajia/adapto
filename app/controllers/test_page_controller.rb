@@ -77,5 +77,57 @@ class TestPageController < ApplicationController
         @message = "This test was taken today. Try again tomorrow!"
       end
     end
+    generated_test = GeneratedTest.find_by(user_id:@user.id,test_no:test_no)
+    if @user.email == "ammu@gmail.com" || @user.email == "test@dec.com"
+      @question_data = []
+      unless generated_test.present?
+        generated_test = GeneratedTest.create({user_id:@user.id,test_no:test_no})
+      topics.each do |topic|
+        available_questions = Question.where(topic_id: topic.id).pluck(:id)
+        attempted_questions = AttemptRecord.where(user_id:@user.id, topic_id: topic.id).pluck(:question_id) rescue 0
+        permitted_questions = (available_questions - attempted_questions).sample(questions_per_topic)
+        if topic.id == topics.last.id
+          if (@question_data.count + permitted_questions.count) < no_of_questions
+            questions_per_topic = no_of_questions - @question_data.count
+            permitted_questions = (available_questions - attempted_questions).sample(questions_per_topic)
+          end
+        end
+        Question.where(id: permitted_questions).each do |question|
+          questions_data = {}
+          questions_data[:question_id] = question.id
+          GeneratedTestQuestion.create({generated_test_id:generated_test.id,question_id: question.id})
+          questions_data[:question] = question.question
+          order = Array.new(question.options.count){ |i| (i+1) }
+          question.options.each do |opt|
+            x = order.sample
+            questions_data["option_#{x}"] = opt.option
+            order = order - [x]
+          end
+          question.no_taken = question.no_taken.to_i + 1
+          question.save!
+          @question_data.push(questions_data)
+        end
+      end
+
+    else
+      unless PerformanceTest.where(user_id:@user.id,test_no:test_no).present?
+        permitted_questions = generated_test.generated_test_questions.pluck(:question_id)
+        Question.where(id: permitted_questions).each do |question|
+          questions_data = {}
+          questions_data[:question_id] = question.id
+          questions_data[:question] = question.question
+          order = Array.new(question.options.count){ |i| (i+1) }
+          question.options.each do |opt|
+            x = order.sample
+            questions_data["option_#{x}"] = opt.option
+            order = order - [x]
+          end
+          @question_data.push(questions_data)
+        end
+      else
+        @message = "This test was taken today. Try again tomorrow!"
+      end
+    end
+    end
   end
 end
