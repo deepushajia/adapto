@@ -41,12 +41,19 @@ class QuestionBankController < ApplicationController
            if user_attempt.score == 1
              hash[:attempted] = "C"
              hash[:correct] = true
+             hash[:incorrect] = false
+             hash[:unattempted] = false
            else
              hash[:attempted] = "W"
              hash[:incorrect] = true
+             hash[:correct] = false
+             hash[:unattempted] = false
+
            end
         else
           hash[:attempted] = "N"
+          hash[:incorrect] = false
+          hash[:correct] = false
           hash[:unattempted] = true
         end
         hash[:bookmarked] = false
