@@ -40,11 +40,14 @@ class QuestionBankController < ApplicationController
         if user_attempt.option_id.present?
            if user_attempt.score == 1
              hash[:attempted] = "C"
+             hash[:correct] = true
            else
              hash[:attempted] = "W"
+             hash[:incorrect] = true
            end
         else
           hash[:attempted] = "N"
+          hash[:unattempted] = true
         end
         hash[:bookmarked] = false
       end
